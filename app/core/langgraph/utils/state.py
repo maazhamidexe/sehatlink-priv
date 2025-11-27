@@ -138,6 +138,7 @@ class MedicalAgentState(TypedDict):
     # LLM-Detected Context (updated by detector nodes)
     detected_language: str  # LLM detection result
     detected_urgency: Literal["Emergency", "High", "Medium", "Low"]  # LLM detection
+    urgency_checked: bool  # Flag to ensure urgency is only checked once
     
     # Symptoms (LLM-extracted from conversation)
     symptom_trigger: bool
