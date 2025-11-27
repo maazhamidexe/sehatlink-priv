@@ -139,7 +139,7 @@ async def save_state_to_longterm_session(user_id: int, state: Dict[str, Any]):
         "red_flags": state.get("red_flags", []),
         
         # Prescription
-        "prescription_data": state.get("prescription_data")
+        "prescription_data": state.get("prescription_data", {}),
     }
     
     # Remove None values to avoid overwriting with null

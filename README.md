@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# sehatlink-priv
-this is the private repo for the sehatlink changes, to be deployed on gcp
-=======
 # sehat-link
 An AI powered healthcare system
 
@@ -31,4 +27,3 @@ It would break everything.
 3. The [Port set in Dockerfile](https://github.com/sehat-inc/sehat-link/blob/e603e06fd00ce0f335002502d25e7f6b6942b6c8/Dockerfile#L17) since GCP listens to 8080 by default
 
 4. When [FastMCP is made into a ASGI app](https://github.com/sehat-inc/sehat-link/blob/e603e06fd00ce0f335002502d25e7f6b6942b6c8/app/api/mcp/server.py#L33) so that it can mount with FastAPI. 
->>>>>>> 687d2fd (copy prev repo)
