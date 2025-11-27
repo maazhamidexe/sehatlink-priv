@@ -254,7 +254,7 @@ async def run_graph_for_user_streaming(socket: WebSocket, user_id: int, user_mes
                 # Capture final result from main graph completion
                 if node_name == "LangGraph" and output:
                     final_result = output
-                    
+
     except Exception as e:
         logger.error(f"Streaming error: {e}")
         await socket.send_text(json.dumps({
@@ -327,6 +327,20 @@ async def chat_socket(socket: WebSocket):
             try:
                 # Prepare message content
                 if image_data:
+                    # Ensure base64 image has proper data URL prefix
+                    if not image_data.startswith("data:image/") and not image_data.startswith("http"):
+                        # Detect image type from base64 header and add proper prefix
+                        if image_data.startswith("/9j/"):
+                            image_data = f"data:image/jpeg;base64,{image_data}"
+                        elif image_data.startswith("iVBORw"):
+                            image_data = f"data:image/png;base64,{image_data}"
+                        elif image_data.startswith("R0lGOD"):
+                            image_data = f"data:image/gif;base64,{image_data}"
+                        elif image_data.startswith("UklGR"):
+                            image_data = f"data:image/webp;base64,{image_data}"
+                        else:
+                            # Default to jpeg if unknown
+                            image_data = f"data:image/jpeg;base64,{image_data}"
                     msg_content = [
                         {"type": "text", "text": user_msg or "Analyze this Prescription"},
                         {"type": "image_url", "image_url": image_data}
