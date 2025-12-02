@@ -22,7 +22,7 @@ class FacilityFinder:
         try:
             response = self.supabase.table(table_name)\
                 .select("latitude, longitude")\
-                .eq("id", user_id)\
+                .eq("patient_id", user_id)\
                 .execute()
 
             if response.data and len(response.data) > 0:

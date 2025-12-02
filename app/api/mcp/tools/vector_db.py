@@ -33,7 +33,7 @@ class PineconeQuery:
     def _query_pinecone(
         self,
         query_vector: List[float],
-        top_k: int = 5,
+        top_k: int = 2,
         namespace: str = "eligibility-namespace",
         filter: Optional[Dict] = None
     ) -> List[Dict]:
@@ -110,7 +110,7 @@ class PineconeQuery:
         self,
         ctx: Context,
         question: Annotated[str, Field(description="The question or query to answer")],
-        top_k_per_query: Annotated[int, Field(description="Amount of chunks to retrieve per query", ge=1, le=10)] = 5,
+        top_k_per_query: Annotated[int, Field(description="Amount of chunks to retrieve per query", ge=1, le=10)] = 2,
         namespace: Annotated[str,
             Field(
                 description="""
@@ -223,7 +223,7 @@ class PineconeQuery:
         self,
         ctx: Context,
         query: Annotated[str, Field(description="Search query")],
-        top_k: Annotated[int, Field(description="Number of results", ge=1, le=15)] = 5,
+        top_k: Annotated[int, Field(description="Number of results", ge=1, le=15)] = 2,
         namespace: Annotated[str, Field(description="Pinecone namespace")] = "__default__",
     ) -> List[Dict]:
         """
